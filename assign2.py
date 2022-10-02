@@ -1,6 +1,7 @@
 
-# help convert decimal to dms https://www.calculatorsoup.com/calculators/conversions/convert-decimal-degrees-to-degrees-minutes-seconds.php
+#help convert decimal to dms https://www.calculatorsoup.com/calculators/conversions/convert-decimal-degrees-to-degrees-minutes-seconds.php
 #helped to figure out functions https://www.w3schools.com/python/python_functions.asp
+#used for the if/else print https://stackoverflow.com/questions/2579535/convert-dd-decimal-degrees-to-dms-degrees-minutes-seconds-in-python
 
 import math
 lat_1 = math.radians(51.098540670795096)
@@ -22,12 +23,17 @@ long_2 = (114.133691)
 def decimal_to_dms(decimal):
     d = int(decimal)
     m = int((decimal - d) * 60)
-    s = ((((decimal - d) ) * 60 ) - m ) * 60
-    print(d, m, (f"{s:.2f}"),)
+    s = (((((decimal - d) ) * 60 ) - m ) * 60)
+    if d >= 52:
+        print ((d), "º",(m),"'", (f"{s:.2f}") ,'"', "W")
+    else:
+        print ((d), "º",(m),"'", (f"{s:.2f}") ,'"', "N")
 decimal_to_dms(lat_1)
-decimal_to_dms(lat_2)
 decimal_to_dms(long_1)
+decimal_to_dms(lat_2)
 decimal_to_dms(long_2)
+
+
 
 
 
