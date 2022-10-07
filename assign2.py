@@ -1,37 +1,38 @@
-
 #help convert decimal to dms https://www.calculatorsoup.com/calculators/conversions/convert-decimal-degrees-to-degrees-minutes-seconds.php
 #helped to figure out functions https://www.w3schools.com/python/python_functions.asp
-#used for the if/else print https://stackoverflow.com/questions/2579535/convert-dd-decimal-degrees-to-dms-degrees-minutes-seconds-in-python
-
 import math
-lat_1 = math.radians(51.098540670795096)
-lat_2 = math.radians(51.013760)
-long_1 = math.radians(114.18546544199816)
-long_2 = math.radians(114.133691)
+lat_1_deg = float(input("enter latitude:"))
+long_1_deg = float(input("enter longtitude:"))
+lat_1_rad = math.radians(lat_1_deg)
+long_1_rad = math.radians(long_1_deg)
+lat_2_deg = (51.013760)
+long_2_deg = (114.133691)
+lat_2_rad = math.radians(lat_2_deg)
+long_2_rad = math.radians(long_2_deg)
 RADIUS_E = (6_378_137)
 RADIUS_P = (6_356_752)
-a = math.sin((lat_1 - lat_2)/2)**2 + math.cos(lat_1) * math.cos(lat_2) * math.sin((long_1 - long_2)/2)**2
-c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-R = (1/3) * (2 * RADIUS_E + RADIUS_P)
-dist_m = R * c
-dist_km = round((dist_m / 1000))
-print(dist_km,'km')
-lat_1 = (51.098540670795096)
-lat_2 = (51.013760)
-long_1 = (114.18546544199816)
-long_2 = (114.133691)
-def decimal_to_dms(decimal):
+a = (math.sin((lat_1_rad - lat_2_rad)/2)**2 + math.cos(lat_1_rad) * math.cos(lat_2_rad) * math.sin((long_1_rad - long_2_rad)/2)**2) 
+c = 2 * math.atan2(math.sqrt(a),math.sqrt(1-a)) 
+R = ((1/3) * (2 * RADIUS_E + RADIUS_P)) 
+dist_km = round((R * c)/1000) 
+print(f"{dist_km:.1f}",'km')
+def decimal_to_dms_N(decimal):
     d = int(decimal)
     m = int((decimal - d) * 60)
-    s = (((((decimal - d) ) * 60 ) - m ) * 60)
-    if d >= 52:
-        print ((d), "º",(m),"'", (f"{s:.2f}") ,'"', "W")
-    else:
-        print ((d), "º",(m),"'", (f"{s:.2f}") ,'"', "N")
-decimal_to_dms(lat_1)
-decimal_to_dms(long_1)
-decimal_to_dms(lat_2)
-decimal_to_dms(long_2)
+    s = (((((decimal - d)) * 60) - m) * 60)
+    print((d),"º",(m),"'",f"{s:.2f}",'"',"N", sep = "")
+def decimal_to_dms_W(decimal):
+    d = int(decimal)
+    m = int((decimal - d) * 60)
+    s = (((((decimal - d)) * 60) - m) * 60)
+    print((d),"º",(m),"'",f"{s:.2f}",'"',"W", sep = "")
+decimal_to_dms_N(lat_1_deg)
+decimal_to_dms_W(long_1_deg)
+decimal_to_dms_N(lat_2_deg)
+decimal_to_dms_W(long_2_deg)
+
+
+
 
 
 
